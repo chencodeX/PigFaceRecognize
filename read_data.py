@@ -9,6 +9,7 @@ cap = cv2.VideoCapture('/home/meteo/zihao.chen/PigFaceRecognize/data/train/1.mp4
 print cap
 
 if cap.isOpened(): #判断是否正常打开
+    print 12
     rval , frame = cap.read()
 else:
     rval = False
