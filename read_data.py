@@ -5,7 +5,7 @@ import numpy as np
 
 # video_file = open('data/train/1.mp4','r')
 print cv2.__version__
-cap = cv2.VideoCapture('./data/train/1.mp4')
+cap = cv2.VideoCapture('/home/meteo/zihao.chen/PigFaceRecognize/data/train/1.mp4')
 print cap
 
 if cap.isOpened(): #判断是否正常打开
