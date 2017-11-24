@@ -6,7 +6,7 @@ import numpy as np
 # video_file = open('data/train/1.mp4','r')
 print cv2.__version__
 cap = cv2.VideoCapture('1.mp4')
-print cap.get(cv2.cv.CV_CAP_PROP_FPS)
+# print cap.get(cv2.cv.CV_CAP_PROP_FPS)
 
 if cap.isOpened(): #判断是否正常打开
     print 12
