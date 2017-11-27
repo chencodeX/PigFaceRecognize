@@ -23,6 +23,7 @@ for video_index in range(class_num):
         # imageio.imwrite(save_url,im)
         image = skimage.img_as_float(im)
         print image.shape
+        print image[130:135,135:140,:]
         print image.mean()
         print image.max()
         print image.min()
