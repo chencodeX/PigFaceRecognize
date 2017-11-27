@@ -28,7 +28,10 @@ for video_index in range(class_num):
         # print image.mean()
         # print image.max()
         # print image.min()
-        cv2.imwrite(save_url,np.array(im))
+        im = np.array(im)
+        im = cv2.cvtColor(im,cv2.COLOR_BGR2RGB)
+
+        cv2.imwrite(save_url,im)
         # fig = pylab.figure()
         # fig.suptitle('image #{}'.format(num), fontsize=20)
         # pylab.imshow(im)
