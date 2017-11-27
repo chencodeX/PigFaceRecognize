@@ -22,7 +22,7 @@ for video_index in range(class_num):
         print save_url
         # imageio.imwrite(save_url,im)
 
-        image = skimage.img_as_uint(im)
+        image = skimage.img_as_int(im)
         print image.shape
         print image[130:135,135:140,:]
         print image.mean()
