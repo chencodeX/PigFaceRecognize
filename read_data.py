@@ -12,7 +12,7 @@ class_num = 30
 
 for video_index in range(class_num):
     #视频的绝对路径
-    filename = 'data/train/%d.mp4'%(video_index+1)
+    filename = 'data/train/video/%d.mp4'%(video_index+1)
     #可以选择解码工具
     vid = imageio.get_reader(filename,  'ffmpeg')
     for num,im in enumerate(vid):
