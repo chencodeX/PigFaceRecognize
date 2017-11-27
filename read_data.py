@@ -1,26 +1,28 @@
 #!/usr/bin/evn python
 # -*- coding: utf-8 -*-
-import cv2
+import pylab
+import imageio
+#注释的代码执行一次就好，以后都会默认下载完成
+#imageio.plugins.ffmpeg.download()
+import skimage
 import numpy as np
 
-# video_file = open('data/train/1.mp4','r')
-print cv2.__version__
-cap = cv2.VideoCapture('1.mp4')
-# print cap.get(cv2.cv.CV_CAP_PROP_FPS)
 
-if cap.isOpened(): #判断是否正常打开
-    print 12
-    rval , frame = cap.read()
-else:
-    rval = False
-while(rval):
-    ret, frame = cap.read()
-    print frame.shape
-    # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+class_num = 30
 
-    # cv2.imshow('frame', frame)
-    # if cv2.waitKey(1) & 0xFF == ord('q'):
-    #     break
-
-cap.release()
-# cv2.destroyAllWindows()
+for video_index in range(class_num):
+    #视频的绝对路径
+    filename = 'data/train/%d.mp4'%(video_index+1)
+    #可以选择解码工具
+    vid = imageio.get_reader(filename,  'ffmpeg')
+    for num,im in enumerate(vid):
+        #image的类型是mageio.core.util.Image可用下面这一注释行转换为arrary
+        save_url = 'data/train/image/%d_%d.png'%(video_index,num)
+        print save_url
+        imageio.imwrite(save_url,im)
+        # image = skimage.img_as_float(im).astype(np.float64)
+        # print image.shape
+        # fig = pylab.figure()
+        # fig.suptitle('image #{}'.format(num), fontsize=20)
+        # pylab.imshow(im)
+    # pylab.show()
