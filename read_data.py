@@ -20,10 +20,11 @@ for video_index in range(class_num):
         #image的类型是mageio.core.util.Image可用下面这一注释行转换为arrary
         save_url = 'data/train/image/%d_%d.png'%(video_index,num)
         print save_url
-        imageio.imwrite(save_url,im)
+        # imageio.imwrite(save_url,im)
         image = skimage.img_as_float(im).astype(np.uint8)
         print image.shape
-        cv2.imwrite(save_url,image)
+        print image.mean()
+        # cv2.imwrite(save_url,image)
         # fig = pylab.figure()
         # fig.suptitle('image #{}'.format(num), fontsize=20)
         # pylab.imshow(im)
