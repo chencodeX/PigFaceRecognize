@@ -21,7 +21,8 @@ for video_index in range(class_num):
         save_url = 'data/train/image/%d_%d.png'%(video_index,num)
         print save_url
         # imageio.imwrite(save_url,im)
-        image = skimage.img_as_float(im)
+
+        image = skimage.img_as_uint(im)
         print image.shape
         print image[130:135,135:140,:]
         print image.mean()
