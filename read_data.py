@@ -24,6 +24,8 @@ for video_index in range(class_num):
         image = skimage.img_as_float(im).astype(np.uint8)
         print image.shape
         print image.mean()
+        print image.max()
+        print image.min()
         # cv2.imwrite(save_url,image)
         # fig = pylab.figure()
         # fig.suptitle('image #{}'.format(num), fontsize=20)
