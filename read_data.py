@@ -1,7 +1,6 @@
 #!/usr/bin/evn python
 # -*- coding: utf-8 -*-
 import pylab
-import cv2
 import imageio
 #注释的代码执行一次就好，以后都会默认下载完成
 #imageio.plugins.ffmpeg.download()
@@ -20,9 +19,8 @@ for video_index in range(class_num):
         #image的类型是mageio.core.util.Image可用下面这一注释行转换为arrary
         save_url = 'data/train/image/%d_%d.png'%(video_index,num)
         print save_url
-        # imageio.imwrite(save_url,im)
-        image = skimage.img_as_float(im).astype(np.float64)
-        cv2.imwrite(save_url,image)
+        imageio.imwrite(save_url,im)
+        # image = skimage.img_as_float(im).astype(np.float64)
         # print image.shape
         # fig = pylab.figure()
         # fig.suptitle('image #{}'.format(num), fontsize=20)
