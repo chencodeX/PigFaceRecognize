@@ -11809,7 +11809,7 @@ layer {
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "classifierllv"
+  bottom: "classifier"
   bottom: "label"
   top: "accuracy"
 }
