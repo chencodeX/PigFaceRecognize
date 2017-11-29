@@ -11776,10 +11776,10 @@ layer {
   }
 }
 layer {
-  name: "classifier"
+  name: "classifier_N"
   type: "InnerProduct"
   bottom: "pool_8x8_s1_drop"
-  top: "classifier"
+  top: "classifier_N"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -11802,14 +11802,14 @@ layer {
 layer {
   name: "softmax_loss"
   type: "SoftmaxWithLoss"
-  bottom: "classifier"
+  bottom: "classifier_N"
   bottom: "label"
   top: "softmax_loss"
 }
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "classifier"
+  bottom: "classifier_N"
   bottom: "label"
   top: "accuracy"
 }
