@@ -1,6 +1,8 @@
 #!/usr/bin/evn python
 # -*- coding: utf-8 -*-
 import lmdb
+import sys
+sys.path.insert(0,'/usr/local/moji/caffe/python')
 import caffe
 import os
 import cv2
@@ -17,3 +19,7 @@ def read_data():
     for class_index in range(class_num):
         all_pics_path = gl(os.path.join(train_image_path, '%d_*.png' % class_index))
         print len(all_pics_path)
+
+
+
+read_data()
