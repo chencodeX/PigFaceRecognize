@@ -7,6 +7,7 @@ import caffe
 import os
 import cv2
 import sys
+import random
 import numpy as np
 from glob import glob as gl
 
@@ -20,10 +21,11 @@ def read_data():
     for class_index in range(class_num):
         all_pics_path = gl(os.path.join(train_image_path, '%d_*.png' % class_index))
         print len(all_pics_path)
-        nn = range(len(all_pics_path))
-        np.random.seed(23)
-        np.random.shuffle(nn)
-        all_pics_path = all_pics_path[nn]
+        random.shuffle(all_pics_path)
+        # nn = range(len(all_pics_path))
+        # np.random.seed(23)
+        # np.random.shuffle(nn)
+        # all_pics_path = all_pics_path[nn]
         train_data_list +=all_pics_path[:500]
         test_data_list +=all_pics_path[500:]
         train_lable_list+=[class_index for i in range(len(all_pics_path[:500]))]
