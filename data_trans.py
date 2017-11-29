@@ -20,7 +20,6 @@ def read_data():
     test_lable_list = []
     for class_index in range(class_num):
         all_pics_path = gl(os.path.join(train_image_path, '%d_*.png' % class_index))
-        print len(all_pics_path)
         random.shuffle(all_pics_path)
         # nn = range(len(all_pics_path))
         # np.random.seed(23)
@@ -36,5 +35,25 @@ def read_data():
     print len(train_lable_list)
     assert len(test_data_list) == len(test_lable_list)
     print len(test_data_list)
+
+    for index in range(len(train_data_list)):
+        temp_path = train_data_list[index]
+        if not os.path.exists(temp_path):
+            continue
+        temp_image = cv2.imread(temp_path)
+        if temp_image is None:
+            continue
+        with open('1129_train.txt', 'a') as f:
+            f.write('%s %d' % (temp_path, train_lable_list[index]))
+
+    for index in range(len(test_data_list)):
+        temp_path = test_data_list[index]
+        if not os.path.exists(temp_path):
+            continue
+        temp_image = cv2.imread(temp_path)
+        if temp_image is None:
+            continue
+        with open('1129_test.txt', 'a') as f:
+            f.write('%s %d' % (temp_path, test_lable_list[index]))
 
 read_data()
