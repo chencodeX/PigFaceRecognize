@@ -44,7 +44,7 @@ def read_data():
         if temp_image is None:
             continue
         with open('1129_train.txt', 'a') as f:
-            f.write('%s %d' % (temp_path, train_lable_list[index]))
+            f.write('%s %d\n' % (temp_path, train_lable_list[index]))
 
     for index in range(len(test_data_list)):
         temp_path = test_data_list[index]
@@ -54,6 +54,6 @@ def read_data():
         if temp_image is None:
             continue
         with open('1129_test.txt', 'a') as f:
-            f.write('%s %d' % (temp_path, test_lable_list[index]))
+            f.write('%s %d\n' % (temp_path, test_lable_list[index]))
 
 read_data()

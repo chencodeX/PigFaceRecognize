@@ -13,19 +13,16 @@ layer {
     mean_value: 127.5
     mean_value: 127.5
     mean_value: 127.5
-    crop_height: 224
-    crop_hrange: 0
-    crop_width: 224
-    crop_wrange: 0
+    crop_size: 299
     mirror: true
   }
   image_data_param {
     source: "/mnt/sdc/zihao.chen/cloudRecognize/1129_train.txt"
     shuffle: true
     is_color: true
-    batch_size: 10
-    new_height:256
-    new_width:256
+    batch_size: 1
+    new_height:320
+    new_width:320
   }
 }
 layer {
@@ -40,17 +37,16 @@ layer {
     mean_value: 127.5
     mean_value: 127.5
     mean_value: 127.5
-    crop_height: 224
-    crop_width: 224
+    crop_size: 299
     mirror: true
   }
   image_data_param {
     source: "/mnt/sdc/zihao.chen/cloudRecognize/1129_test.txt"
     shuffle: true
     is_color: true
-    batch_size: 10
-    new_height:256
-    new_width:256
+    batch_size: 1
+    new_height:320
+    new_width:320
   }
 }
 
@@ -11813,7 +11809,7 @@ layer {
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "classifier"
+  bottom: "classifierllv"
   bottom: "label"
   top: "accuracy"
 }
