@@ -48,8 +48,9 @@ _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
                                  int(_img.shape[0] * base_size / min(_img.shape[:2])))
                           )
 _img = center_crop(_img)
+_img = _img[np.newaxis,...]
 # transformed_image = transformer.preprocess('data', image)
-
+_img = _img.transpose(0, 3, 1, 2)
 net.blobs['data'].data[...] = _img
 output = net.forward()
 output_prob = net.blobs['pool_8x8_s1'].data[...]
