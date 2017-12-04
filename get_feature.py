@@ -47,6 +47,7 @@ _img = cv2.imread('data/train/image/9_995.png')
 _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
                                  int(_img.shape[0] * base_size / min(_img.shape[:2])))
                           )
+_img = image_preprocess(_img)
 _img = center_crop(_img)
 _img = _img[np.newaxis,...]
 # transformed_image = transformer.preprocess('data', image)
