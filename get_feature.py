@@ -30,5 +30,5 @@ net.blobs['data'].data[...] = transformed_image
 output = net.forward()
 output_prob = net.blobs['pool_8x8_s1'].data[...]
 print output_prob.shape
-print net.blobs['pool_8x8_s1_drop'].data[...].shape
+print net.blobs['pool_8x8_s1_drop'].data[...][0,700,0,0] == net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
 print net.blobs['classifier_N'].data[...].shape
