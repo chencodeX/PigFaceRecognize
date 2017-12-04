@@ -29,7 +29,7 @@ def center_crop(img): # single crop
 
 
 caffe.set_mode_gpu()
-model_def = 'net_file/deploy_inception-resnet-v2.prototxt'
+model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
 model_weights = 'weights/inception-resnet-v2.caffemodel'
 
 net = caffe.Net(model_def, model_weights, caffe.TEST)
