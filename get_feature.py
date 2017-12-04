@@ -57,9 +57,9 @@ _img = _img[np.newaxis,...]
 _img = _img.transpose(0, 3, 1, 2)
 net.blobs['data'].data[...] = _img
 output = net.forward()
-output_prob = net.blobs['pool_8x8_s1'].data[...]
+output_prob = net.blobs['conv6_1x1'].data[...]
 print output_prob.shape
-print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+print net.blobs['conv6_1x1'].data[...][0,700,0,0]
 
 # net.blobs['data'].data[...] = _img
 # output = net.forward()
