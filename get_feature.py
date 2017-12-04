@@ -53,7 +53,7 @@ _img = center_crop(_img)
 _img = _img[np.newaxis,...]
 # transformed_image = transformer.preprocess('data', image)
 _img = _img.transpose(0, 3, 1, 2)
-for i in range(10)
+for i in range(10):
     net.blobs['data'].data[...] = _img
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
