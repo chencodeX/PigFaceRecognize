@@ -13,6 +13,7 @@ std = np.array([128.0, 128.0, 128.0])
 
 crop_size = 299
 base_size = 320
+
 def image_preprocess(img):
     b, g, r = cv2.split(img)
     return cv2.merge([(b-mean_value[0])/std[0], (g-mean_value[1])/std[1], (r-mean_value[2])/std[2]])
@@ -58,11 +59,11 @@ output_prob = net.blobs['pool_8x8_s1'].data[...]
 print output_prob.shape
 print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
 
-net.blobs['data'].data[...] = _img
-output = net.forward()
-output_prob = net.blobs['pool_8x8_s1'].data[...]
-print output_prob.shape
-print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+# net.blobs['data'].data[...] = _img
+# output = net.forward()
+# output_prob = net.blobs['pool_8x8_s1'].data[...]
+# print output_prob.shape
+# print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
 
 # print net.blobs['pool_8x8_s1'].data[...][1,700,0,0]
 # print net.blobs['pool_8x8_s1'].data[...][2,700,0,0]
