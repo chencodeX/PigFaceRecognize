@@ -50,6 +50,7 @@ _img = cv2.resize(_img, (299,299))
 #                                  int(_img.shape[0] * base_size / min(_img.shape[:2])))
 #                           )
 # _img = image_preprocess(_img)
+_img = np.ones_like(_img)*128
 # _img = center_crop(_img)
 _img = _img[np.newaxis,...]
 # transformed_image = transformer.preprocess('data', image)
