@@ -11757,16 +11757,8 @@ layer {
   }
 }
 layer {
-  name: "softmax_loss"
-  type: "SoftmaxWithLoss"
+  name: "softmax"
+  type: "Softmax"
   bottom: "classifier_N"
-  bottom: "label"
-  top: "softmax_loss"
-}
-layer {
-  name: "accuracy"
-  type: "Accuracy"
-  bottom: "classifier_N"
-  bottom: "label"
-  top: "accuracy"
+  top: "prob"
 }
