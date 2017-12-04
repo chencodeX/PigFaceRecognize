@@ -28,5 +28,5 @@ transformed_image = transformer.preprocess('data', image)
 
 net.blobs['data'].data[...] = transformed_image
 output = net.forward()
-output_prob = output['pool_8x8_s1'].data[...]
+output_prob = net.blobs['pool_8x8_s1'].data[...]
 print output_prob.shape
