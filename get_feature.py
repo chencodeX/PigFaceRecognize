@@ -8,7 +8,7 @@ sys.path.insert(0, '/usr/local/moji/caffe/python')
 import caffe
 import os
 
-caffe.set_mode_cpu()
+caffe.set_mode_gpu()
 model_def = 'net_file/deploy_inception-resnet-v2.prototxt'
 model_weights = 'weights/inception-resnet-v2.caffemodel'
 
@@ -16,7 +16,7 @@ net = caffe.Net(model_def, model_weights, caffe.TEST)
 transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
 transformer.set_transpose('data', (2,0,1))
 transformer.set_mean('data', np.array([128.0, 128.0, 128.0]))
-transformer.set_std('data', np.array([128.0, 128.0, 128.0]))
+# transformer.set_std('data', np.array([128.0, 128.0, 128.0]))
 transformer.set_raw_scale('data', 255)
 transformer.set_channel_swap('data', (2,1,0))
 
