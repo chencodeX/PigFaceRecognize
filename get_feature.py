@@ -57,6 +57,13 @@ output = net.forward()
 output_prob = net.blobs['pool_8x8_s1'].data[...]
 print output_prob.shape
 print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+
+net.blobs['data'].data[...] = _img
+output = net.forward()
+output_prob = net.blobs['pool_8x8_s1'].data[...]
+print output_prob.shape
+print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+
 # print net.blobs['pool_8x8_s1'].data[...][1,700,0,0]
 # print net.blobs['pool_8x8_s1'].data[...][2,700,0,0]
 # print net.blobs['pool_8x8_s1'].data[...][3,700,0,0]
