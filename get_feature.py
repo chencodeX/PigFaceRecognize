@@ -40,7 +40,7 @@ net = caffe.Net(model_def, model_weights, caffe.TEST)
 # transformer.set_raw_scale('data', 255)
 # transformer.set_channel_swap('data', (2,1,0))
 
-net.blobs['data'].reshape(4,3,299, 299)
+net.blobs['data'].reshape(1,3,299, 299)
 
 
 # image = caffe.io.load_image('data/train/image/9_995.png')
