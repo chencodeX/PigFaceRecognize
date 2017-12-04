@@ -42,7 +42,7 @@ net = caffe.Net(model_def, model_weights, caffe.TEST)
 net.blobs['data'].reshape(1,3,299, 299)
 
 
-image = caffe.io.load_image('data/train/image/9_995.png')
+# image = caffe.io.load_image('data/train/image/9_995.png')
 _img = cv2.imread('data/train/image/9_995.png')
 _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
                                  int(_img.shape[0] * base_size / min(_img.shape[:2])))
@@ -55,6 +55,6 @@ output = net.forward()
 output_prob = net.blobs['pool_8x8_s1'].data[...]
 print output_prob.shape
 print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
-print net.blobs['pool_8x8_s1'].data[...][1,700,0,0]
-print net.blobs['pool_8x8_s1'].data[...][2,700,0,0]
-print net.blobs['pool_8x8_s1'].data[...][3,700,0,0]
+# print net.blobs['pool_8x8_s1'].data[...][1,700,0,0]
+# print net.blobs['pool_8x8_s1'].data[...][2,700,0,0]
+# print net.blobs['pool_8x8_s1'].data[...][3,700,0,0]
