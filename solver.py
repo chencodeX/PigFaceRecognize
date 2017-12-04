@@ -41,3 +41,9 @@ def denoise_solver(file_names, _lr, moment, _wd, fresh):
     check_dir(snap_path)
     s.solver_mode = caffe_pb2.SolverParameter.GPU
     return s
+
+def get_feature():
+    net = caffe.Net(NET_PATH, caffe.TEST)
+    net.blobs['data'].data[...] = data
+    output = net.forward()
+    position = output['pool2'].reshape(data.shape).astype(np.int)
