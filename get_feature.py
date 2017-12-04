@@ -40,26 +40,25 @@ net = caffe.Net(model_def, model_weights, caffe.TEST)
 # transformer.set_raw_scale('data', 255)
 # transformer.set_channel_swap('data', (2,1,0))
 
-net.blobs['data'].reshape(1,3,299, 299)
+net.blobs['data'].reshape(4,3,299, 299)
 
 
 # image = caffe.io.load_image('data/train/image/9_995.png')
 _img = cv2.imread('data/train/image/9_990.png')
-_img = cv2.resize(_img, (299,299))
-# _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
-#                                  int(_img.shape[0] * base_size / min(_img.shape[:2])))
-#                           )
-# _img = image_preprocess(_img)
-_img = np.ones_like(_img)*128
-# _img = center_crop(_img)
+_img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
+                                 int(_img.shape[0] * base_size / min(_img.shape[:2])))
+                          )
+_img = image_preprocess(_img)
+_img = center_crop(_img)
 _img = _img[np.newaxis,...]
 # transformed_image = transformer.preprocess('data', image)
 _img = _img.transpose(0, 3, 1, 2)
-net.blobs['data'].data[...] = _img
-output = net.forward()
-output_prob = net.blobs['pool_8x8_s1'].data[...]
-print output_prob.shape
-print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+for i in range(10)
+    net.blobs['data'].data[...] = _img
+    output = net.forward()
+    output_prob = net.blobs['pool_8x8_s1'].data[...]
+    print output_prob.shape
+    print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
 
 # net.blobs['data'].data[...] = _img
 # output = net.forward()
