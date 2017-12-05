@@ -7,13 +7,14 @@ sys.path.insert(0, '/usr/local/moji/caffe/python')
 import cv2
 import caffe
 import os
+import pickle
 
 mean_value = np.array([128.0, 128.0, 128.0])
 std = np.array([128.0, 128.0, 128.0])
 
 crop_size = 299
 base_size = 320
-
+imag_root_path = 'data/train/image/'
 def image_preprocess(img):
     b, g, r = cv2.split(img)
     return cv2.merge([(b-mean_value[0])/std[0], (g-mean_value[1])/std[1], (r-mean_value[2])/std[2]])
@@ -33,32 +34,39 @@ model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
 model_weights = 'weights/inception-resnet-v2.caffemodel'
 
 net = caffe.Net(model_def, model_weights, caffe.TEST)
+net.blobs['data'].reshape(1,3,299, 299)
 # transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
 # transformer.set_transpose('data', (2,0,1))
 # transformer.set_mean('data', np.array([128.0, 128.0, 128.0]))
 # # transformer.set_std('data', np.array([128.0, 128.0, 128.0]))
 # transformer.set_raw_scale('data', 255)
 # transformer.set_channel_swap('data', (2,1,0))
-
-net.blobs['data'].reshape(1,3,299, 299)
-
-
 # image = caffe.io.load_image('data/train/image/9_995.png')
-_img = cv2.imread('data/train/image/9_990.png')
-_img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
-                                 int(_img.shape[0] * base_size / min(_img.shape[:2])))
-                          )
-_img = image_preprocess(_img)
-_img = center_crop(_img)
-_img = _img[np.newaxis,...]
-# transformed_image = transformer.preprocess('data', image)
-_img = _img.transpose(0, 3, 1, 2)
-for i in range(10):
+
+
+all_file_list =os.listdir(imag_root_path)
+all_features =[]
+for image_path in all_file_list:
+    _img = cv2.imread(os.path.join(imag_root_path,image_path))
+    _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
+                                     int(_img.shape[0] * base_size / min(_img.shape[:2])))
+                              )
+    _img = image_preprocess(_img)
+    _img = center_crop(_img)
+    _img = _img[np.newaxis,...]
+    _img = _img.transpose(0, 3, 1, 2)
     net.blobs['data'].data[...] = _img
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
-    print output_prob.shape
-    print net.blobs['pool_8x8_s1'].data[...][0,700,0,0]
+    all_features.append(output_prob[0,:,0,0])
+
+
+feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
+print len(feature_map)
+f_f = open('inception_resnet_v2_feature.pkl','wb')
+pickle.dump(feature_map,f_f)
+f_f.close()
+
 
 # net.blobs['data'].data[...] = _img
 # output = net.forward()
