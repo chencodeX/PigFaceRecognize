@@ -8,13 +8,13 @@ import cv2
 import caffe
 import os
 import pickle
-
+from config import *
 mean_value = np.array([128.0, 128.0, 128.0])
 std = np.array([128.0, 128.0, 128.0])
 
 crop_size = 299
 base_size = 320
-imag_root_path = 'data/train/image/'
+imag_root_path = os.path.join(DATA_PATH,'data/train/image/')
 def image_preprocess(img):
     b, g, r = cv2.split(img)
     return cv2.merge([(b-mean_value[0])/std[0], (g-mean_value[1])/std[1], (r-mean_value[2])/std[2]])
