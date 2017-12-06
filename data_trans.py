@@ -10,9 +10,9 @@ import sys
 import random
 import numpy as np
 from glob import glob as gl
-
+from config import *
 class_num = 30
-train_image_path = '/mnt/sdc/zihao.chen/cloudRecognize/data/train/image'
+train_image_path = DATA_PATH +'data/train/image'
 def read_data():
     train_data_list=[]
     train_lable_list = []
@@ -25,8 +25,9 @@ def read_data():
         # np.random.seed(23)
         # np.random.shuffle(nn)
         # all_pics_path = all_pics_path[nn]
-        train_data_list +=all_pics_path[:500]
-        test_data_list +=all_pics_path[500:]
+        pics_num = len(all_pics_path)
+        train_data_list +=all_pics_path[:(pics_num*0.8)]
+        test_data_list +=all_pics_path[(pics_num*0.8):]
         train_lable_list+=[class_index for i in range(len(all_pics_path[:500]))]
         test_lable_list += [class_index for i in range(len(all_pics_path[500:]))]
 
@@ -38,22 +39,24 @@ def read_data():
 
     for index in range(len(train_data_list)):
         temp_path = train_data_list[index]
+        print temp_path
         if not os.path.exists(temp_path):
             continue
         temp_image = cv2.imread(temp_path)
         if temp_image is None:
             continue
-        with open('1129_train.txt', 'a') as f:
+        with open('1206_train.txt', 'a') as f:
             f.write('%s %d\n' % (temp_path, train_lable_list[index]))
 
     for index in range(len(test_data_list)):
         temp_path = test_data_list[index]
+        print temp_path
         if not os.path.exists(temp_path):
             continue
         temp_image = cv2.imread(temp_path)
         if temp_image is None:
             continue
-        with open('1129_test.txt', 'a') as f:
+        with open('1206_test.txt', 'a') as f:
             f.write('%s %d\n' % (temp_path, test_lable_list[index]))
 
 read_data()
