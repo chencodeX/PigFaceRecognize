@@ -26,8 +26,8 @@ def read_data():
         # np.random.shuffle(nn)
         # all_pics_path = all_pics_path[nn]
         pics_num = len(all_pics_path)
-        train_data_list +=all_pics_path[:(pics_num*0.8)]
-        test_data_list +=all_pics_path[(pics_num*0.8):]
+        train_data_list +=all_pics_path[:int(pics_num*0.8)]
+        test_data_list +=all_pics_path[int(pics_num*0.8):]
         train_lable_list+=[class_index for i in range(len(all_pics_path[:500]))]
         test_lable_list += [class_index for i in range(len(all_pics_path[500:]))]
 
