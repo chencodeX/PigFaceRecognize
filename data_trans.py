@@ -28,8 +28,8 @@ def read_data():
         pics_num = len(all_pics_path)
         train_data_list +=all_pics_path[:int(pics_num*0.8)]
         test_data_list +=all_pics_path[int(pics_num*0.8):]
-        train_lable_list+=[class_index for i in range(len(all_pics_path[:500]))]
-        test_lable_list += [class_index for i in range(len(all_pics_path[500:]))]
+        train_lable_list+=[class_index for i in range(len(all_pics_path[:int(pics_num*0.8)]))]
+        test_lable_list += [class_index for i in range(len(all_pics_path[int(pics_num*0.8):]))]
 
 
     assert len(train_lable_list) ==len(train_data_list)
