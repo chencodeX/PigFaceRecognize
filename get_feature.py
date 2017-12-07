@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
-sys.path.insert(0, '/usr/local/moji/caffe/python')
+from config import *
+
 import cv2
 import caffe
 import os
 import pickle
-from config import *
+# from config import *
 mean_value = np.array([128.0, 128.0, 128.0])
 std = np.array([128.0, 128.0, 128.0])
 
