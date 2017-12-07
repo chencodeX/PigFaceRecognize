@@ -45,6 +45,8 @@ net.blobs['data'].reshape(1,3,299, 299)
 
 
 all_file_list =os.listdir(imag_root_path)
+print imag_root_path
+print len(all_file_list)
 all_features =[]
 for image_path in all_file_list:
     _img = cv2.imread(os.path.join(imag_root_path,image_path))
