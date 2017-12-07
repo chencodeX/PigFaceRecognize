@@ -49,6 +49,7 @@ print imag_root_path
 print len(all_file_list)
 all_features =[]
 for image_path in all_file_list:
+    print image_path
     _img = cv2.imread(os.path.join(imag_root_path,image_path))
     _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
                                      int(_img.shape[0] * base_size / min(_img.shape[:2])))
