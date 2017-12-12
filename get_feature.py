@@ -70,7 +70,7 @@ for batch_index in range(batch_num+1):
     all_images = np.array(all_images)
     print all_images.shape
     all_images = all_images.transpose(0, 3, 1, 2)
-    block_images = np.zeros((batch_size,299,299,3)).astype(np.float)
+    block_images = np.zeros((batch_size,3,299,299)).astype(np.float)
     block_images[:len(all_images)]= all_images
     net.blobs['data'].data[...] = block_images
     output = net.forward()
