@@ -70,7 +70,7 @@ for batch_index in range(batch_num+1):
     all_images = all_images.transpose(0, 3, 1, 2)
     net.blobs['data'].data[...] = all_images
     output = net.forward()
-    output_prob = net.blobs['pool_8x8_s1'].data[...]
+    output_prob = net.blobs['pool_8x8_s1'].data[...][:]
     print output_prob.shape
     # x =
     all_features[start:end,:]=output_prob[:,:,0,0]
