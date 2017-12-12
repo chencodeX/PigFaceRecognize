@@ -45,7 +45,7 @@ net.blobs['data'].reshape(batch_size,3,299, 299)
 # image = caffe.io.load_image('data/train/image/9_995.png')
 
 
-all_file_list =os.listdir(imag_root_path)[:300]
+all_file_list =os.listdir(imag_root_path)
 print imag_root_path
 print len(all_file_list)
 all_file_num = len(all_file_list)
@@ -88,7 +88,7 @@ for batch_index in range(batch_num+1):
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
 print feature_map
 print len(feature_map)
-f_f = open('inception_resnet_v2_feature_test.pkl','wb')
+f_f = open('inception_resnet_v2_feature.pkl','wb')
 pickle.dump(feature_map,f_f)
 f_f.close()
 
