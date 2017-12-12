@@ -34,7 +34,7 @@ model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
 model_weights = 'weights/inception-resnet-v2.caffemodel'
 
 net = caffe.Net(model_def, model_weights, caffe.TEST)
-net.blobs['data'].reshape(1,3,299, 299)
+net.blobs['data'].reshape(128,3,299, 299)
 # transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
 # transformer.set_transpose('data', (2,0,1))
 # transformer.set_mean('data', np.array([128.0, 128.0, 128.0]))
