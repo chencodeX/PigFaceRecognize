@@ -52,11 +52,13 @@ all_file_num = len(all_file_list)
 all_features = np.zeros((len(all_file_list),1536)).astype(np.float)
 
 batch_num = all_file_num /128
+a =0
 for batch_index in range(batch_num+1):
     all_images=[]
     start, end = batch_index * batch_size, (batch_index + 1) * batch_size
     temp_all_file_list = all_file_list[start:end]
     for i in range(len(temp_all_file_list)):
+        a+=1
         _img = cv2.imread(os.path.join(imag_root_path, temp_all_file_list[i]))
         _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
                                  int(_img.shape[0] * base_size / min(_img.shape[:2]))))
@@ -88,7 +90,7 @@ f_f = open('inception_resnet_v2_feature_test.pkl','wb')
 pickle.dump(feature_map,f_f)
 f_f.close()
 
-
+print a
 # net.blobs['data'].data[...] = _img
 # output = net.forward()
 # output_prob = net.blobs['pool_8x8_s1'].data[...]
