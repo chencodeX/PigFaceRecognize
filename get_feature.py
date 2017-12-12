@@ -53,7 +53,7 @@ batch_size = 128
 batch_num = all_file_num /128
 for batch_index in range(batch_num+1):
     all_images=[]
-    start, end = i * batch_size, (i + 1) * batch_size
+    start, end = batch_index * batch_size, (batch_index + 1) * batch_size
     temp_all_file_list = all_file_list[start:end]
     for i in range(len(temp_all_file_list)):
         _img = cv2.imread(os.path.join(imag_root_path, temp_all_file_list[i]))
