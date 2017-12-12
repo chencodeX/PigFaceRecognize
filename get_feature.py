@@ -63,6 +63,7 @@ for image_path in all_file_list[:10]:
     output_prob = net.blobs['pool_8x8_s1'].data[...]
     x = output_prob[0,:,0,0][:,]
     all_features.append(x)
+    x =None
 
 print all_features
 
