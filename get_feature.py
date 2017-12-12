@@ -47,7 +47,7 @@ net.blobs['data'].reshape(1,3,299, 299)
 all_file_list =os.listdir(imag_root_path)
 print imag_root_path
 print len(all_file_list)
-all_features =[]
+all_features = []
 for image_path in all_file_list[:10]:
     print image_path
     _img = cv2.imread(os.path.join(imag_root_path,image_path))
@@ -62,7 +62,7 @@ for image_path in all_file_list[:10]:
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
     # x =
-    print output_prob[0,:,0,0]
+    print output_prob[0,:,0,0].shape
     all_features.append(output_prob[0,:,0,0])
     # x =None
 
