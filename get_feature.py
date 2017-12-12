@@ -65,7 +65,7 @@ for image_path in all_file_list[:10]:
     all_features.append(output_prob[0,:,0,0])
 
 
-feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
+feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list[:10]))}
 print feature_map
 print len(feature_map)
 f_f = open('inception_resnet_v2_feature_test.pkl','wb')
