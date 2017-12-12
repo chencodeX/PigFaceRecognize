@@ -62,7 +62,7 @@ for image_path in all_file_list[:10]:
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
     print output_prob[0,:,0,0]
-    all_features.append(output_prob[0,:,0,0])
+    all_features.append(output_prob[0,:,0,0][:])
 
 
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list[:10]))}
