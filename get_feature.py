@@ -70,9 +70,11 @@ for batch_index in range(batch_num+1):
     all_images = np.array(all_images)
     print all_images.shape
     all_images = all_images.transpose(0, 3, 1, 2)
-    net.blobs['data'].data[...] = all_images
+    block_images = np.zeros((batch_size,299,299,3)).astype(np.float)
+    block_images[:len(all_images)]= all_images
+    net.blobs['data'].data[...] = block_images
     output = net.forward()
-    output_prob = net.blobs['pool_8x8_s1'].data[...][:]
+    output_prob = net.blobs['pool_8x8_s1'].data[...][:len(all_images)][:]
     print output_prob.shape
     # x =
     print output_prob
