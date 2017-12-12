@@ -28,7 +28,7 @@ def center_crop(img): # single crop
     xx = int((img.shape[1] - crop_size) / 2)
     return img[yy: yy + crop_size, xx: xx + crop_size]
 
-batch_size = 64
+batch_size = 32
 caffe.set_mode_gpu()
 # caffe.set_device((0,1,2,3))
 model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
