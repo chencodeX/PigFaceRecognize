@@ -64,6 +64,7 @@ for image_path in all_file_list[:10]:
     print output_prob[0,:,0,0]
     all_features.append(output_prob[0,:,0,0][:])
 
+print all_features
 
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list[:10]))}
 print feature_map
