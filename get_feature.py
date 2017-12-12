@@ -47,27 +47,35 @@ net.blobs['data'].reshape(1,3,299, 299)
 all_file_list =os.listdir(imag_root_path)
 print imag_root_path
 print len(all_file_list)
-all_features = np.zeros((10,1536)).astype(np.float)
-index = 0
-for image_path in all_file_list[:10]:
-    print image_path
-    _img = cv2.imread(os.path.join(imag_root_path,image_path))
-    _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
-                                     int(_img.shape[0] * base_size / min(_img.shape[:2])))
-                              )
-    _img = image_preprocess(_img)
-    _img = center_crop(_img)
-    _img = _img[np.newaxis,...]
-    _img = _img.transpose(0, 3, 1, 2)
-    net.blobs['data'].data[...] = _img
+all_file_num = len(all_file_list)
+all_features = np.zeros((len(all_file_list),1536)).astype(np.float)
+batch_size = 128
+batch_num = all_file_num /128
+for batch_index in range(batch_num+1):
+    all_images=[]
+    start, end = i * batch_size, (i + 1) * batch_size
+    temp_all_file_list = all_file_list[start:end]
+    for i in range(len(temp_all_file_list)):
+        _img = cv2.imread(os.path.join(imag_root_path, temp_all_file_list[i]))
+        _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
+                                 int(_img.shape[0] * base_size / min(_img.shape[:2]))))
+        _img = image_preprocess(_img)
+        _img = center_crop(_img)
+        print _img.shape
+        all_images.append(_img)
+
+    all_images = np.array(all_images)
+    print all_images.shape
+    all_images = all_images.transpose(0, 3, 1, 2)
+    net.blobs['data'].data[...] = all_images
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
     # x =
-    all_features[index,:]=output_prob[0,:,0,0]
+    all_features[start:end,:]=output_prob[:,:,0,0]
     print output_prob[0,:,0,0]
     # all_features.append(output_prob[0,:,0,0])
     # x =None
-    index+=1
+
 # print all_features
 
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list[:10]))}
