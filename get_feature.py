@@ -28,14 +28,14 @@ def center_crop(img): # single crop
     xx = int((img.shape[1] - crop_size) / 2)
     return img[yy: yy + crop_size, xx: xx + crop_size]
 
-
+batch_size = 64
 caffe.set_mode_gpu()
-caffe.set_device((0,1,2,3))
+# caffe.set_device((0,1,2,3))
 model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
 model_weights = 'weights/inception-resnet-v2.caffemodel'
 
 net = caffe.Net(model_def, model_weights, caffe.TEST)
-net.blobs['data'].reshape(128,3,299, 299)
+net.blobs['data'].reshape(batch_size,3,299, 299)
 # transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
 # transformer.set_transpose('data', (2,0,1))
 # transformer.set_mean('data', np.array([128.0, 128.0, 128.0]))
@@ -50,7 +50,7 @@ print imag_root_path
 print len(all_file_list)
 all_file_num = len(all_file_list)
 all_features = np.zeros((len(all_file_list),1536)).astype(np.float)
-batch_size = 128
+
 batch_num = all_file_num /128
 for batch_index in range(batch_num+1):
     all_images=[]
