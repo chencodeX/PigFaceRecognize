@@ -224,7 +224,7 @@ def train():
     loss = torch.nn.CrossEntropyLoss(size_average=True)
     loss = loss.cuda()
 
-    optimizer = optim.SGD(model.parameters(), lr=0.0005, momentum=0.75, weight_decay=1e-4)
+    optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.90, weight_decay=1e-4)
 
     epochs = 1000
     for e in range(epochs):
