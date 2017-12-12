@@ -80,7 +80,7 @@ for batch_index in range(batch_num+1):
 
 # print all_features
 
-feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list[:10]))}
+feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
 print feature_map
 print len(feature_map)
 f_f = open('inception_resnet_v2_feature_test.pkl','wb')
