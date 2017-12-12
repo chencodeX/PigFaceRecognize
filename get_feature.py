@@ -51,7 +51,7 @@ print len(all_file_list)
 all_file_num = len(all_file_list)
 all_features = np.zeros((len(all_file_list),1536)).astype(np.float)
 
-batch_num = all_file_num /128
+batch_num = all_file_num /32
 a =0
 for batch_index in range(batch_num+1):
     all_images=[]
