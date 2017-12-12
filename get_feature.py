@@ -48,7 +48,7 @@ all_file_list =os.listdir(imag_root_path)
 print imag_root_path
 print len(all_file_list)
 all_features =[]
-for image_path in all_file_list:
+for image_path in all_file_list[:10]:
     print image_path
     _img = cv2.imread(os.path.join(imag_root_path,image_path))
     _img = cv2.resize(_img, (int(_img.shape[1] * base_size / min(_img.shape[:2])),
@@ -61,13 +61,14 @@ for image_path in all_file_list:
     net.blobs['data'].data[...] = _img
     output = net.forward()
     output_prob = net.blobs['pool_8x8_s1'].data[...]
-    print output_prob
+    print output_prob[0,:,0,0]
     all_features.append(output_prob[0,:,0,0])
 
 
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
+print feature_map
 print len(feature_map)
-f_f = open('inception_resnet_v2_feature.pkl','wb')
+f_f = open('inception_resnet_v2_feature_test.pkl','wb')
 pickle.dump(feature_map,f_f)
 f_f.close()
 
