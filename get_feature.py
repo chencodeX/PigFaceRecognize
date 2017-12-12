@@ -45,7 +45,7 @@ net.blobs['data'].reshape(batch_size,3,299, 299)
 # image = caffe.io.load_image('data/train/image/9_995.png')
 
 
-all_file_list =os.listdir(imag_root_path)[:1000]
+all_file_list =os.listdir(imag_root_path)[:300]
 print imag_root_path
 print len(all_file_list)
 all_file_num = len(all_file_list)
