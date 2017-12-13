@@ -12,6 +12,7 @@ from scipy.stats import mode
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
 import pickle
+import csv
 from progressbar import *
 import random
 from config import *
@@ -217,6 +218,17 @@ def pig_predict():
     model = torch.load('models/fcnet_model_shuffle_SGD_112_0.pkl')
     model.training =False
     lable_Y = predict_all(model, testX)
+    tag = []
+    for index in range(len(all_label)):
+        image_name= int(all_label[index])
+        for y in range(len(lable_Y[index])):
+            label = lable_Y[index,y]
+            tag.append([image_name,y+1,str('%.8f'%(label))])
+    with open('out.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+    for x in tag:
+        writer.writerow(x)
+
     print lable_Y[0]
     print lable_Y[10].sum()
     print lable_Y[100].sum()
