@@ -14,7 +14,7 @@ std = np.array([128.0, 128.0, 128.0])
 
 crop_size = 299
 base_size = 320
-imag_root_path = os.path.join(DATA_PATH,'data/train/image/')
+imag_root_path = os.path.join(DATA_PATH,'data/testA/')
 def image_preprocess(img):
     b, g, r = cv2.split(img)
     return cv2.merge([(b-mean_value[0])/std[0], (g-mean_value[1])/std[1], (r-mean_value[2])/std[2]])
@@ -88,7 +88,7 @@ for batch_index in range(batch_num+1):
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
 print feature_map
 print len(feature_map)
-f_f = open('inception_resnet_v2_feature.pkl','wb')
+f_f = open('inception_resnet_v2_testA_feature.pkl','wb')
 pickle.dump(feature_map,f_f)
 f_f.close()
 
