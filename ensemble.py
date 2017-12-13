@@ -201,7 +201,7 @@ def CV_train():
                     f.write('%s\t%s\n' % (key, lable_test[i]))
 
 def pig_predict():
-    feature_file = open('inception_resnet_v2_feature.pkl','rb')
+    feature_file = open('inception_resnet_v2_testA_feature.pkl','rb')
     all_feature = pickle.load(feature_file)
     feature_file.close()
 
@@ -220,7 +220,7 @@ def pig_predict():
 
 
 def train():
-    feature_file = open('inception_resnet_v2_testA_feature.pkl','rb')
+    feature_file = open('inception_resnet_v2_feature.pkl','rb')
     all_feature = pickle.load(feature_file)
     feature_file.close()
     # all_feature={}
