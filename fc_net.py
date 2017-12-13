@@ -30,6 +30,7 @@ class Fc_Net(nn.Module):
         if self.training:
             x = self.dropout2(x)
         x = self.fc3(x)
+
         return x
         # x = x.view(x.size(0), self.input_fetures)
         # out = self.model(x)

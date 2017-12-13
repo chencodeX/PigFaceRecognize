@@ -215,8 +215,9 @@ def pig_predict():
     lable = np.array(all_label)
     testX = torch.from_numpy(all_data).float()
     model = torch.load('models/fcnet_model_shuffle_SGD_112_0.pkl')
+    model.training =False
     lable_Y = predict_all(model, testX)
-    print lable_Y[0].sum()
+    print lable_Y[0]
     print lable_Y[10].sum()
     print lable_Y[100].sum()
     print lable_Y[1000].sum()
