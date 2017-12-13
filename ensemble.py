@@ -216,8 +216,13 @@ def pig_predict():
     testX = torch.from_numpy(all_data).float()
     model = torch.load('models/fcnet_model_shuffle_SGD_112_0.pkl')
     lable_Y = predict_all(model, testX)
-    print lable_Y.shape
-
+    print lable_Y[0]
+    print lable_Y[10]
+    print lable_Y[100]
+    print lable_Y[1000]
+    print lable_Y[2000]
+    print lable_Y[2500]
+    print lable_Y[2501]
 
 def train():
     feature_file = open('inception_resnet_v2_feature.pkl','rb')
