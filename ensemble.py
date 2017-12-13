@@ -24,6 +24,13 @@ def predict(model, x_val):
         return output[0].cpu().data.numpy().argmax(axis=1)
     return output.cpu().data.numpy().argmax(axis=1)
 
+def predict_all(model, x_val):
+    x = Variable(x_val.cuda(), requires_grad=False)
+    output = model.forward(x)
+    if type(output) == tuple:
+        return output[0].cpu().data.numpy().argmax(axis=1)
+    return output.cpu().data.numpy()
+
 
 def predict_feature(model, x_val):
     x = Variable(x_val.cuda(), requires_grad=False)
@@ -193,6 +200,25 @@ def CV_train():
                 with open('predict_dog_ens_4.txt', 'a') as f:
                     f.write('%s\t%s\n' % (key, lable_test[i]))
 
+def pig_predict():
+    feature_file = open('inception_resnet_v2_feature.pkl','rb')
+    all_feature = pickle.load(feature_file)
+    feature_file.close()
+
+    all_data = []
+    all_label = []
+    for key,value in all_feature.iteritems():
+        lable = int(key.split('.')[0])
+        all_label.append(lable)
+        all_data.append(value)
+    all_data = np.array(all_data)
+    lable = np.array(all_label)
+    testX = torch.from_numpy(all_data).float()
+    model = torch.load('models/fcnet_model_shuffle_SGD_123_4.pkl')
+    lable_Y = predict_all(model, testX)
+    print lable_Y.shape
+
+
 def train():
     feature_file = open('inception_resnet_v2_feature.pkl','rb')
     all_feature = pickle.load(feature_file)
@@ -262,4 +288,4 @@ def train():
 
 
 if __name__ == '__main__':
-    train()
+    pig_predict()
