@@ -214,7 +214,7 @@ def pig_predict():
     all_data = np.array(all_data)
     lable = np.array(all_label)
     testX = torch.from_numpy(all_data).float()
-    model = torch.load('models/fcnet_model_shuffle_SGD_123_4.pkl')
+    model = torch.load('models/fcnet_model_shuffle_SGD_112_0.pkl')
     lable_Y = predict_all(model, testX)
     print lable_Y.shape
 
