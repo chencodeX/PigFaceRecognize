@@ -226,8 +226,8 @@ def pig_predict():
             tag.append([image_name,y+1,str('%.8f'%(label))])
     with open('out.csv', 'w') as csvfile:
         writer = csv.writer(csvfile)
-    for x in tag:
-        writer.writerow(x)
+        for x in tag:
+            writer.writerow(x)
 
     print lable_Y[0]
     print lable_Y[10].sum()
