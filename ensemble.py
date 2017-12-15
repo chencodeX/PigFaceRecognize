@@ -278,6 +278,9 @@ def train():
         # print test_data[:,0].shape
         # print test_data[:, 2].shape
     print train_X.shape
+    print train_Y.shape
+    print test_X.shape
+    print test_Y.shape
     all_data = np.array(all_data)
     lable = np.array(all_label)
     nn = range(len(all_data))
