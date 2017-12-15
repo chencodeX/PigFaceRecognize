@@ -244,10 +244,17 @@ def train():
     # all_feature={}
     all_data = []
     all_label = []
+    x_y_data = np.zeros((len(all_feature),3)).astype(np.object)
+    index = 0
     for key,value in all_feature.iteritems():
         lable = int(key.split('_')[0])
+        lable_num = int(key.split('_')[1].split('.')[0])
         all_label.append(lable)
         all_data.append(value)
+        x_y_data[index,0] = int(lable)
+        x_y_data[index, 2] = value
+        x_y_data[index, 1] = lable_num
+    print x_y_data[:10]
     all_data = np.array(all_data)
     lable = np.array(all_label)
     nn = range(len(all_data))
