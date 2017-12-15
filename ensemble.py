@@ -258,9 +258,9 @@ def train():
         x_y_data[index, 1] = lable_num
         index += 1
     train_X = np.zeros((0)).astype(np.object)
-    train_Y = []
-    test_X = []
-    test_Y = []
+    train_Y = np.zeros((0)).astype(np.object)
+    test_X = np.zeros((0)).astype(np.object)
+    test_Y = np.zeros((0)).astype(np.object)
 
     for label_id in range(30):
         temp_data = x_y_data[x_y_data[:, 0] == label_id]
@@ -270,11 +270,14 @@ def train():
         pics_num = temp_data.shape[0]
         train_data = temp_data[:int(pics_num * 0.8)]
         test_data = temp_data[int(pics_num * 0.8):]
-        print train_data[:,0].shape
-        print train_data[:, 2].shape
-        print test_data[:,0].shape
-        print test_data[:, 2].shape
-
+        train_X = np.concatenate((train_X,train_data[:,2]),axis=0)
+        train_Y = np.concatenate((train_Y, train_data[:, 0]), axis=0)
+        test_X = np.concatenate((test_X, test_data[:, 2]), axis=0)
+        test_Y = np.concatenate((test_Y, test_data[:, 0]), axis=0)
+        # print train_data[:, 2].shape
+        # print test_data[:,0].shape
+        # print test_data[:, 2].shape
+    print train_X.shape
     all_data = np.array(all_data)
     lable = np.array(all_label)
     nn = range(len(all_data))
