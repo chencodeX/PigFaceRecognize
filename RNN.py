@@ -23,7 +23,7 @@ class GRU_Model(nn.Module):
         return out
 
 
-sequence_length = 28
+sequence_length = 20
 input_size = 1530
 hidden_size = 128
 num_layers = 2
@@ -37,5 +37,5 @@ rnn.cuda()
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(rnn.parameters(), lr=learning_rate)
 
-images = Variable(torch.randn(-1, sequence_length, input_size)).cuda()
+images = Variable(torch.randn(8, sequence_length, input_size)).cuda()
 outputs = rnn(images)
