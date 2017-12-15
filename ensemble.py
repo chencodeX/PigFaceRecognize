@@ -263,7 +263,8 @@ def train():
         print temp_data.shape
         temp_data = temp_data[temp_data[:,1] %5 ==0]
         print temp_data.shape
-        temp_data.sort(axis =0)
+        sort = np.argsort(temp_data,axis=0)
+        temp_data = temp_data[sort[:,1]]
         print temp_data[:10]
 
     all_data = np.array(all_data)
