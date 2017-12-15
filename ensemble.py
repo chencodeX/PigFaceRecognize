@@ -254,6 +254,7 @@ def train():
         x_y_data[index,0] = int(lable)
         x_y_data[index, 2] = value
         x_y_data[index, 1] = lable_num
+        index+=1
     print x_y_data[:10]
     all_data = np.array(all_data)
     lable = np.array(all_label)
