@@ -285,22 +285,27 @@ def train():
     test_X_C = np.zeros((test_X.shape[0], test_X[0].shape[0]))
     print train_X_C.shape
     print test_X_C.shape
-    all_data = np.array(all_data)
-    lable = np.array(all_label)
-    nn = range(len(all_data))
-    np.random.shuffle(nn)
-    all_data = all_data[nn]
-    lable = lable[nn]
-    proportion = 0.85
-    batch_size = 256
-    train_X = all_data[:int(all_data.shape[0] * proportion)]
-    test_X = all_data[int(all_data.shape[0] * proportion):]
 
-    train_Y = lable[:int(lable.shape[0] * proportion)]
-    test_Y = lable[int(lable.shape[0] * proportion):]
-    print all_data.shape
-    print lable.shape
-    model = Fc_Net(all_data.shape[1], 30)
+    for i in range(train_X_C.shape[0]):
+        train_X_C[i,:] = train_X[i]
+    for i in range(test_X_C.shape[0]):
+        test_X_C[i,:] = test_X[i]
+    # all_data = np.array(all_data)
+    # lable = np.array(all_label)
+    # nn = range(len(all_data))
+    # np.random.shuffle(nn)
+    # all_data = all_data[nn]
+    # lable = lable[nn]
+    # proportion = 0.85
+    batch_size = 256
+    # train_X = all_data[:int(all_data.shape[0] * proportion)]
+    # test_X = all_data[int(all_data.shape[0] * proportion):]
+    #
+    # train_Y = lable[:int(lable.shape[0] * proportion)]
+    # test_Y = lable[int(lable.shape[0] * proportion):]
+    # print all_data.shape
+    # print lable.shape
+    model = Fc_Net(train_X_C.shape[1], 30)
     model = model.cuda()
     loss = torch.nn.CrossEntropyLoss(size_average=True)
     loss = loss.cuda()
