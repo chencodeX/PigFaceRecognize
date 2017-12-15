@@ -17,9 +17,11 @@ class GRU_Model(nn.Module):
 
     def forward(self,x):
         h0 = Variable(torch.zeros(self.num_layers, x.size(0), self.hidden_size).cuda())
-
+        print h0.szie()
         out, _ = self.GRU(x,h0)
+        print out.size()
         out = self.fc(out[:,-1,:])
+        print out.size()
         return out
 
 
