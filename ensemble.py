@@ -265,8 +265,8 @@ def train():
     print lable.shape
     model = Fc_Net(all_data.shape[1], 30)
     model = model.cuda()
-    loss = torch.nn.CrossEntropyLoss(size_average=True)
-    loss = loss.cuda()
+    loss = torch.nn.CrossEntropyLoss(size_average=True).cuda()
+    # loss = loss.cuda()
 
     optimizer = optim.SGD(model.parameters(), lr=0.0005, momentum=0.75, weight_decay=1e-4)
 
