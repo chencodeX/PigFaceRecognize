@@ -293,7 +293,8 @@ def train():
 
     train_X = train_X_C
     test_X = test_X_C
-    print test_Y[1]
+    print test_Y[:10]
+    print test_X.dtype
     # all_data = np.array(all_data)
     # lable = np.array(all_label)
     # nn = range(len(all_data))
