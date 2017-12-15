@@ -25,11 +25,11 @@ class GRU_Model(nn.Module):
         return out
 
 
-sequence_length = 20
+sequence_length = 10
 input_size = 1530
 hidden_size = 128
 num_layers = 2
-num_classes = 10
+num_classes = 30
 batch_size = 100
 num_epochs = 2
 learning_rate = 0.01
