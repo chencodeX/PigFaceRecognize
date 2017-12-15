@@ -265,7 +265,7 @@ def train():
         print temp_data[:10]
         print temp_data.shape
         sort = np.argsort(temp_data[:,1].astype(np.int),axis=0)
-        temp_data = temp_data[sort[:,1]]
+        temp_data = temp_data[sort]
         print temp_data[:10]
 
     all_data = np.array(all_data)
