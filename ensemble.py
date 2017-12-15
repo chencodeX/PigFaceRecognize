@@ -25,6 +25,7 @@ def predict(model, x_val):
         return output[0].cpu().data.numpy().argmax(axis=1)
     return output.cpu().data.numpy().argmax(axis=1)
 
+
 def predict_all(model, x_val):
     x = Variable(x_val.cuda(), requires_grad=False)
     output = model.forward(x)
@@ -118,7 +119,6 @@ def CV_train():
     add__test_data = (inception_test_data + resnet_test_data)
     all_test_data = np.concatenate((inception_test_data, densenet_test_data, resnet_test_data, add__test_data), axis=1)
 
-
     add_data = (inception_data + resnet_data)
     all_data = np.concatenate((inception_data, densenet_data, resnet_data, add_data), axis=1)
     # nn = range(len(all_data))
@@ -177,7 +177,7 @@ def CV_train():
             last_acc = acc / num_batches_test
             # torch.save(model, 'models/fcnet_model_shuffle_%s_%s_4.pkl' % ('SGD', str(e)))
         model.training = False
-        #预测样本
+        # 预测样本
         predict_lable = np.zeros((0))
         num_batches_train = int(all_test_data.shape[0] / batch_size) + 1
         for i in range(num_batches_train):
@@ -196,19 +196,20 @@ def CV_train():
 
     for i in range(len(lable_test)):
         for key, value in key_map.iteritems():
-            mode_value = mode(test_preds[:,i])[0][0]
+            mode_value = mode(test_preds[:, i])[0][0]
             if value == mode_value:
                 with open('predict_dog_ens_4.txt', 'a') as f:
                     f.write('%s\t%s\n' % (key, lable_test[i]))
 
+
 def pig_predict():
-    feature_file = open('inception_resnet_v2_testA_feature.pkl','rb')
+    feature_file = open('inception_resnet_v2_testA_feature.pkl', 'rb')
     all_feature = pickle.load(feature_file)
     feature_file.close()
 
     all_data = []
     all_label = []
-    for key,value in all_feature.iteritems():
+    for key, value in all_feature.iteritems():
         lable = int(key.split('.')[0])
         all_label.append(lable)
         all_data.append(value)
@@ -216,14 +217,14 @@ def pig_predict():
     lable = np.array(all_label)
     testX = torch.from_numpy(all_data).float()
     model = torch.load('models/fcnet_model_shuffle_SGD_112_0.pkl')
-    model.training =False
+    model.training = False
     lable_Y = predict_all(model, testX)
     tag = []
     for index in range(len(all_label)):
-        image_name= int(all_label[index])
+        image_name = int(all_label[index])
         for y in range(len(lable_Y[index])):
-            label = lable_Y[index,y]
-            tag.append([image_name,y+1,str('%.8f'%(label))])
+            label = lable_Y[index, y]
+            tag.append([image_name, y + 1, str('%.8f' % (label))])
     with open('out.csv', 'w') as csvfile:
         writer = csv.writer(csvfile)
         for x in tag:
@@ -237,25 +238,32 @@ def pig_predict():
     print lable_Y[2500].sum()
     print lable_Y[2501].sum()
 
+
 def train():
-    feature_file = open('inception_resnet_v2_feature.pkl','rb')
+    feature_file = open('inception_resnet_v2_feature.pkl', 'rb')
     all_feature = pickle.load(feature_file)
     feature_file.close()
     # all_feature={}
     all_data = []
     all_label = []
-    x_y_data = np.zeros((len(all_feature),3)).astype(np.object)
+    x_y_data = np.zeros((len(all_feature), 3)).astype(np.object)
     index = 0
-    for key,value in all_feature.iteritems():
+    for key, value in all_feature.iteritems():
         lable = int(key.split('_')[0])
         lable_num = int(key.split('_')[1].split('.')[0])
         all_label.append(lable)
         all_data.append(value)
-        x_y_data[index,0] = int(lable)
+        x_y_data[index, 0] = int(lable)
         x_y_data[index, 2] = value
         x_y_data[index, 1] = lable_num
-        index+=1
-    print x_y_data[:10]
+        index += 1
+
+    for label_id in range(30):
+        temp_data = x_y_data[x_y_data[:, 0] == label_id]
+        print temp_data.shape
+        temp_data = temp_data[temp_data[:,1] %5 ==0]
+        print temp_data.shape
+
     all_data = np.array(all_data)
     lable = np.array(all_label)
     nn = range(len(all_data))
