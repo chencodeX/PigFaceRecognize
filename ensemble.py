@@ -262,6 +262,7 @@ def train():
         temp_data = x_y_data[x_y_data[:, 0] == label_id]
         print temp_data.shape
         temp_data = temp_data[temp_data[:,1] %5 ==0]
+        print temp_data[:10]
         print temp_data.shape
         sort = np.argsort(temp_data,axis=0)
         temp_data = temp_data[sort[:,1]]
