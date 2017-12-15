@@ -263,8 +263,8 @@ def train():
         print temp_data.shape
         temp_data = temp_data[temp_data[:,1] %5 ==0]
         print temp_data.shape
-        temp_data.sort()
-        print temp_data
+        temp_data = temp_data.sort(axis =0)
+        print temp_data[:10]
 
     all_data = np.array(all_data)
     lable = np.array(all_label)
