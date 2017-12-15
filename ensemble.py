@@ -290,6 +290,9 @@ def train():
         train_X_C[i,:] = train_X[i]
     for i in range(test_X_C.shape[0]):
         test_X_C[i,:] = test_X[i]
+
+    train_X = train_X_C
+    test_X = test_X_C
     # all_data = np.array(all_data)
     # lable = np.array(all_label)
     # nn = range(len(all_data))
