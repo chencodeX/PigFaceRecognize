@@ -281,6 +281,10 @@ def train():
     print train_Y.shape
     print test_X.shape
     print test_Y.shape
+    train_X_C = np.zeros((train_X.shape[0],train_X[0].shape[0]))
+    test_X_C = np.zeros((test_X.shape[0], test_X[0].shape[0]))
+    print train_X_C.shape
+    print test_X_C.shape
     all_data = np.array(all_data)
     lable = np.array(all_label)
     nn = range(len(all_data))
