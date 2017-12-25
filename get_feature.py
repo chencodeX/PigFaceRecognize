@@ -52,7 +52,7 @@ net.blobs['data'].reshape(batch_size,3,299, 299)
 all_file_list = []
 for file_class in class_names:
     print class_names
-    all_file_list +=os.listdir(os.path.join(imag_root_path,class_names))
+    all_file_list +=os.listdir(os.path.join(imag_root_path,file_class))
 
 print imag_root_path
 print len(all_file_list)
