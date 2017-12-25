@@ -34,7 +34,7 @@ def center_crop(img): # single crop
     xx = int((img.shape[1] - crop_size) / 2)
     return img[yy: yy + crop_size, xx: xx + crop_size]
 
-batch_size = 4
+batch_size = 1
 caffe.set_mode_gpu()
 # caffe.set_device((0,1,2,3))
 model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
@@ -61,7 +61,7 @@ print len(all_file_list)
 all_file_num = len(all_file_list)
 all_features = np.zeros((len(all_file_list),1536)).astype(np.float)
 
-batch_num = all_file_num /32
+batch_num = all_file_num /batch_size
 a =0
 for batch_index in range(batch_num+1):
     all_images=[]
