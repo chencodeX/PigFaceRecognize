@@ -11,7 +11,13 @@ import pickle
 # from config import *
 mean_value = np.array([128.0, 128.0, 128.0])
 std = np.array([128.0, 128.0, 128.0])
-
+class_names = ('none_snow',
+               'heavy_snow_in',
+               'heavy_snow_after',
+               'moderate_snow_in',
+               'moderate_snow_after',
+               'light_snow_in',
+               'light_snow_after')
 crop_size = 299
 base_size = 320
 imag_root_path = os.path.join(DATA_PATH,'data/testA/')
@@ -43,9 +49,10 @@ net.blobs['data'].reshape(batch_size,3,299, 299)
 # transformer.set_raw_scale('data', 255)
 # transformer.set_channel_swap('data', (2,1,0))
 # image = caffe.io.load_image('data/train/image/9_995.png')
+all_file_list = []
+for file_class in class_names:
+    all_file_list +=os.listdir(os.path.join(imag_root_path,class_names))
 
-
-all_file_list =os.listdir(imag_root_path)
 print imag_root_path
 print len(all_file_list)
 all_file_num = len(all_file_list)
@@ -88,7 +95,7 @@ for batch_index in range(batch_num+1):
 feature_map = {all_file_list[i]:all_features[i] for i in range(len(all_file_list))}
 print feature_map
 print len(feature_map)
-f_f = open('inception_resnet_v2_testA_feature.pkl','wb')
+f_f = open('inception_resnet_v2_feature.pkl','wb')
 pickle.dump(feature_map,f_f)
 f_f.close()
 

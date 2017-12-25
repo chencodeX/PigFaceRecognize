@@ -352,5 +352,17 @@ def train():
         torch.save(model, 'models/fcnet_model_shuffle_%s_%s_0.pkl' % ('SGD', str(e)))
 
 
+def rnn_train():
+    sequence_length = 10
+    input_size = 1530
+    hidden_size = 128
+    num_layers = 2
+    num_classes = 30
+    batch_size = 100
+    num_epochs = 2
+    learning_rate = 0.01
+
+
+
 if __name__ == '__main__':
     train()
