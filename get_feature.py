@@ -11,13 +11,13 @@ import pickle
 # from config import *
 mean_value = np.array([128.0, 128.0, 128.0])
 std = np.array([128.0, 128.0, 128.0])
-class_names = ('none_snow',
+class_names = ['none_snow',
                'heavy_snow_in',
                'heavy_snow_after',
                'moderate_snow_in',
                'moderate_snow_after',
                'light_snow_in',
-               'light_snow_after')
+               'light_snow_after']
 crop_size = 299
 base_size = 320
 imag_root_path = os.path.join(DATA_PATH,'snow_image')
