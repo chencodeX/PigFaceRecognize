@@ -20,7 +20,7 @@ class_names = ('none_snow',
                'light_snow_after')
 crop_size = 299
 base_size = 320
-imag_root_path = os.path.join(DATA_PATH,'data/testA/')
+imag_root_path = os.path.join(DATA_PATH,'snow_image')
 def image_preprocess(img):
     b, g, r = cv2.split(img)
     return cv2.merge([(b-mean_value[0])/std[0], (g-mean_value[1])/std[1], (r-mean_value[2])/std[2]])
@@ -34,7 +34,7 @@ def center_crop(img): # single crop
     xx = int((img.shape[1] - crop_size) / 2)
     return img[yy: yy + crop_size, xx: xx + crop_size]
 
-batch_size = 32
+batch_size = 4
 caffe.set_mode_gpu()
 # caffe.set_device((0,1,2,3))
 model_def = 'net_file/deploy_inception-resnet-v2-deploy.prototxt'
