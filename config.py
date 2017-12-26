@@ -13,3 +13,5 @@ if platform.node() == 'm6':
     sys.path.insert(0, '/usr/local/moji/caffe/python')
 elif platform.node() == 'sentec-001':
     DATA_PATH = '/data/pig/'
+elif platform.node() == 'bj20':
+    DATA_PATH = '/home/meteo/zihao.chen/data'
